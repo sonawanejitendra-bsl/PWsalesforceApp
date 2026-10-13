@@ -1,3 +1,5 @@
+// Flow steps live here. Locators live in pages/. Values live in data/onboarding.json.
+// URL, user, and password live in .env. See docs/how-to-change.md.
 import { test } from "../src/fixtures.js";
 import { loadOnboardingData, portalPassword, portalUser } from "../src/test-data.js";
 

@@ -21,6 +21,16 @@ export function loadOnboardingData(): OnboardingData {
   return JSON.parse(readFileSync(file, "utf8")) as OnboardingData;
 }
 
+/** Site host. Change PORTAL_URL in .env. Do not put a path here. */
+export function portalUrl(): string {
+  return process.env.PORTAL_URL ?? "https://birlasoftfscdemo-dev-ed.develop.my.site.com";
+}
+
+/** Page path after the host. Change PORTAL_PATH in .env. */
+export function portalPath(): string {
+  return process.env.PORTAL_PATH ?? "/brokerportal/s/customer-search-portal";
+}
+
 export function portalUser(): string {
   return process.env.PORTAL_USER ?? "";
 }

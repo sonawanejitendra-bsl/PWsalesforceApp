@@ -5,6 +5,8 @@ import { LoanInformationPage } from "../pages/loan-information.page.js";
 import { LoginPage } from "../pages/login.page.js";
 import { WelcomePage } from "../pages/welcome.page.js";
 
+// Add a new screen here: import the page class, add it to Pages, and add one fixture below.
+// A new flow then receives that name in the test arguments. See docs/how-to-change.md.
 type Pages = {
   login: LoginPage;
   welcome: WelcomePage;

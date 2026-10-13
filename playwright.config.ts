@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const portalUrl = "https://birlasoftfscdemo-dev-ed.develop.my.site.com";
+// Change the site in .env (PORTAL_URL). See docs/how-to-change.md.
+const portalUrl = process.env.PORTAL_URL ?? "https://birlasoftfscdemo-dev-ed.develop.my.site.com";
 
 export default defineConfig({
   testDir: "./tests",
