@@ -1,0 +1,14 @@
+{
+  "searchText": "Aj Bell",
+  "companyName": "AJ BELL PLC",
+  "companyNumber": "04503206",
+  "status": "Active",
+  "addressParts": ["Exchange Quay", "Salford Quays", "M5 3EE"],
+  "contactName": "BIRCH, Peter Michael",
+  "email": "test@test.com",
+  "totalPremium": "60000",
+  "depositPercent": "7",
+  "repayments": "9",
+  "grossRate": "9",
+  "purpose": "Property Insurance"
+}

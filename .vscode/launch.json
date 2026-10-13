@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Broker onboarding",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run onboarding",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

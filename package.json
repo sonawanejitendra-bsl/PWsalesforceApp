@@ -1,0 +1,22 @@
+{
+  "name": "pwsalesforce-app",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Playwright framework and tests for the broker portal onboarding flow.",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "onboarding": "playwright test tests/broker-onboarding.spec.ts --workers=1",
+    "typecheck": "tsc --noEmit",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.5.2",
+    "dotenv": "^16.6.1",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
