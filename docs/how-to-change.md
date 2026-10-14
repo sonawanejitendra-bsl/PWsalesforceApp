@@ -1,6 +1,6 @@
 # How to change this project
 
-The framework and the tests are in this one repo. Three places cover almost every change.
+The framework and the tests are in this one repo. The page object model is already in use. `docs/how-the-flow-runs.md` shows which file runs which step. Three places cover almost every change.
 
 | What you want to change | Where |
 | --- | --- |

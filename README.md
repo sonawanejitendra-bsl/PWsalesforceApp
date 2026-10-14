@@ -2,7 +2,9 @@
 
 One repo for the Playwright framework and the broker portal tests.
 
-The onboarding flow is `tests/broker-onboarding.spec.ts`. How to change the URL, replace a login placeholder, or add another flow is in `docs/how-to-change.md`.
+The onboarding flow is `tests/broker-onboarding.spec.ts`. It uses the page object model: steps in `tests/`, locators in `pages/`, and values in `data/onboarding.json`.
+
+`docs/how-the-flow-runs.md` follows that test from file to file. `docs/how-to-change.md` covers the URL, login placeholders, and a new flow.
 
 ## On another computer
 
