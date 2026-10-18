@@ -1,0 +1,8 @@
+{
+  "employeeLogin": "Are you an employee? login here",
+  "logInButton": "Log In",
+  "verifyButton": "Verify",
+  "welcomeButton": "Start Onboarding",
+  "otpFrom": "noreply@salesforce.com",
+  "otpSubject": "Verify your identity in Salesforce"
+}

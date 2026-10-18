@@ -2,7 +2,9 @@
 // URL, user, and password stay in .env. Outlook on this machine supplies the code.
 import { test } from "../src/fixtures.js";
 import { readLatestOutlookOtp } from "../src/outlook-otp.js";
-import { portalPassword, portalUser } from "../src/test-data.js";
+import { loadLoginWithCodeData, portalPassword, portalUser } from "../src/test-data.js";
+
+const data = loadLoginWithCodeData();
 
 test("broker signs in through the email verification code", { tag: "@login" }, async ({ login, welcome }) => {
   test.setTimeout(240_000);
@@ -26,12 +28,12 @@ test("broker signs in through the email verification code", { tag: "@login" }, a
     const since = new Date();
     await login.submitLogin();
     await login.waitForVerificationCode();
-    const code = await readLatestOutlookOtp(since);
+    const code = await readLatestOutlookOtp(since, { from: data.otpFrom, subject: data.otpSubject });
     await login.enterVerificationCode(code);
     await login.submitVerification();
   });
 
   await test.step("Welcome screen is shown", async () => {
-    await welcome.expectWelcome();
+    await welcome.expectWelcome(data.welcomeButton);
   });
 });

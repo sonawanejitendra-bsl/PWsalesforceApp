@@ -38,3 +38,18 @@ export function portalUser(): string {
 export function portalPassword(): string {
   return process.env.PORTAL_PASSWORD ?? "";
 }
+
+export interface LoginWithCodeData {
+  employeeLogin: string;
+  logInButton: string;
+  verifyButton: string;
+  welcomeButton: string;
+  otpFrom: string;
+  otpSubject: string;
+}
+
+/** Screen labels and the verification email match for npm run login. */
+export function loadLoginWithCodeData(): LoginWithCodeData {
+  const file = path.resolve(process.cwd(), "data", "login-with-code.json");
+  return JSON.parse(readFileSync(file, "utf8")) as LoginWithCodeData;
+}

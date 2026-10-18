@@ -57,4 +57,4 @@ Example. To search a different company, change `searchText` and the four result 
 
 Login methods, including the email verification code, live in `pages/login.page.ts`. Replacing a locator is described in `docs/how-to-change.md`. Adding another flow uses the same split: a new spec, a page file if the screen is new, and a JSON file for its data.
 
-`npm run login` is a separate sign-in in `tests/login-with-code.spec.ts`. It uses `pages/login.page.ts`. `src/outlook-otp.ts` reads the verification code from classic Outlook on this machine. That command does not run the company search or the loan steps.
+`npm run login` is a separate sign-in in `tests/login-with-code.spec.ts`. The same steps are written in `features/04-login-with-code.feature`. Screen labels and the verification email match are in `data/login-with-code.json`. The test uses `pages/login.page.ts`. `src/outlook-otp.ts` reads the verification code from classic Outlook on this machine. That command does not run the company search or the loan steps.

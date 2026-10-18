@@ -10,7 +10,10 @@ const execFileAsync = promisify(execFile);
  * Classic Outlook must be installed and signed in. If Outlook asks to allow
  * access, choose Allow for a few minutes.
  */
-export async function readLatestOutlookOtp(since: Date): Promise<string> {
+export async function readLatestOutlookOtp(
+  since: Date,
+  mail?: { from?: string; subject?: string },
+): Promise<string> {
   const waitSeconds = Number(process.env.OTP_WAIT_SECONDS ?? "90");
   const script = path.resolve(process.cwd(), "scripts", "read-outlook-otp.ps1");
   let stdout = "";
@@ -28,9 +31,9 @@ export async function readLatestOutlookOtp(since: Date): Promise<string> {
         "-WaitSeconds",
         String(waitSeconds),
         "-FromLike",
-        process.env.OTP_FROM?.trim() || "noreply@salesforce.com",
+        process.env.OTP_FROM?.trim() || mail?.from?.trim() || "noreply@salesforce.com",
         "-SubjectLike",
-        process.env.OTP_SUBJECT?.trim() || "Verify your identity in Salesforce",
+        process.env.OTP_SUBJECT?.trim() || mail?.subject?.trim() || "Verify your identity in Salesforce",
       ],
       { timeout: (waitSeconds + 30) * 1000, windowsHide: true },
     );
