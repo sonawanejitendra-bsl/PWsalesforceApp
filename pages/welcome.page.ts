@@ -5,6 +5,11 @@ import { captureStep } from "../src/capture-step.js";
 export class WelcomePage {
   constructor(private readonly page: Page) {}
 
+  async expectWelcome(): Promise<void> {
+    await this.page.getByRole("button", { name: "Start Onboarding" }).waitFor({ state: "visible" });
+    await captureStep(this.page, "Welcome screen");
+  }
+
   async startOnboarding(): Promise<void> {
     await this.page.getByRole("button", { name: "Start Onboarding" }).click();
     await captureStep(this.page, "Start onboarding");

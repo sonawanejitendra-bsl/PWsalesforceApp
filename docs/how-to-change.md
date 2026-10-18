@@ -49,6 +49,20 @@ await this.page.getByRole("textbox", { name: "Email" }).fill(username);
 
 The test reads this file. You do not need to edit `tests/broker-onboarding.spec.ts` to change those values.
 
+## Sign in with the email code
+
+`npm run login` runs only `tests/login-otp.spec.ts`. It stops on the welcome screen. It does not search for a company.
+
+The Salesforce login is two screens, then the code:
+
+1. Enter the username and click **Log In**.
+2. Enter the password and click **Log In**.
+3. On **Verify Your Identity**, type the code and click **Verify**.
+
+The code comes from the newest Outlook message sent by `noreply@salesforce.com` with the subject **Verify your identity in Salesforce**. The message line is `Verification Code:` followed by the digits. Leave classic Outlook open and signed in. If Outlook asks whether a program may read email, choose Allow.
+
+`OTP_FROM`, `OTP_SUBJECT`, and `OTP_WAIT_SECONDS` in `.env` control that search. `OTP_WAIT_SECONDS` defaults to 90.
+
 ## Add a new flow
 
 1. Add `tests/your-flow.spec.ts`.

@@ -7,6 +7,13 @@
       "request": "launch",
       "command": "npm run onboarding",
       "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Login with email code",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run login",
+      "cwd": "${workspaceFolder}"
     }
   ]
 }
