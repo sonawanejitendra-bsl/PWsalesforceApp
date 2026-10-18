@@ -51,7 +51,7 @@ The test reads this file. You do not need to edit `tests/broker-onboarding.spec.
 
 ## Sign in with the email code
 
-`npm run login` runs only `tests/login-otp.spec.ts`. It stops on the welcome screen. It does not search for a company.
+`npm run login` runs only `tests/login-with-code.spec.ts`. The screen steps are in `pages/login-with-code.page.ts`, so `pages/login.page.ts` stays as it is. It stops on the welcome screen. It does not search for a company.
 
 The Salesforce login is two screens, then the code:
 

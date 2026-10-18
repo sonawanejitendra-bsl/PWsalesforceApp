@@ -7,7 +7,7 @@
   "scripts": {
     "test": "playwright test",
     "onboarding": "playwright test tests/broker-onboarding.spec.ts --workers=1",
-    "login": "playwright test tests/login-otp.spec.ts --workers=1",
+    "login": "playwright test tests/login-with-code.spec.ts --workers=1",
     "typecheck": "tsc --noEmit",
     "report": "playwright show-report"
   },
