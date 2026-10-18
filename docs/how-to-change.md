@@ -53,11 +53,12 @@ The test reads this file. You do not need to edit `tests/broker-onboarding.spec.
 
 `npm run login` runs only `tests/login-with-code.spec.ts`. Every screen step is a method on `pages/login.page.ts`. It stops on the welcome screen. It does not search for a company.
 
-The Salesforce login is two screens, then the code:
+The Salesforce login starts from the employee link, then two screens, then the code:
 
-1. Enter the username and click **Log In**.
-2. Enter the password and click **Log In**.
-3. On **Verify Your Identity**, type the code and click **Verify**.
+1. Click **Are you an employee? login here**.
+2. Enter the username and click **Log In**.
+3. Enter the password and click **Log In**.
+4. On **Verify Your Identity**, type the code and click **Verify**.
 
 The code comes from the newest Outlook message sent by `noreply@salesforce.com` with the subject **Verify your identity in Salesforce**. The message line is `Verification Code:` followed by the digits. Leave classic Outlook open and signed in. If Outlook asks whether a program may read email, choose Allow.
 

@@ -22,9 +22,16 @@ export class LoginPage {
     await captureStep(this.page, "Login clicked");
   }
 
-  /** PLACEHOLDER. Replace with the real "Are you an employee? login here" control. */
+  /** "Are you an employee? login here" on the Salesforce screen, before the username. */
   async clickEmployeeLogin(): Promise<void> {
-    await this.page.getByRole("link", { name: /are you an employee/i }).or(this.page.getByRole("button", { name: /are you an employee/i })).first().click();
+    const employee = this.page
+      .getByRole("link", { name: /are you an employee|log\s*in here/i })
+      .or(this.page.getByRole("button", { name: /are you an employee|log\s*in here/i }))
+      .or(this.page.getByText(/are you an employee/i))
+      .first();
+    await employee.waitFor({ state: "visible" });
+    await employee.click();
+    await this.page.getByRole("textbox", { name: /username/i }).waitFor({ state: "visible" });
     await captureStep(this.page, "Employee login clicked");
   }
 

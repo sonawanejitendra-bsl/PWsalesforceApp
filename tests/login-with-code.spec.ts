@@ -7,9 +7,10 @@ import { portalPassword, portalUser } from "../src/test-data.js";
 test("broker signs in through the email verification code", { tag: "@login" }, async ({ login, welcome }) => {
   test.setTimeout(240_000);
 
-  await test.step("Open the portal and choose Login", async () => {
+  await test.step("Open the portal and choose employee login", async () => {
     await login.open();
     await login.clickLogin();
+    await login.clickEmployeeLogin();
   });
 
   await test.step("Enter the username and continue", async () => {
