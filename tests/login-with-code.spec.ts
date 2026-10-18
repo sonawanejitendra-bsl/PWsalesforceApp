@@ -9,8 +9,12 @@ test("broker signs in through the email verification code", { tag: "@login" }, a
   test.setTimeout(240_000);
   const login = new LoginWithCodePage(page);
 
-  await test.step("Enter the username and continue", async () => {
+  await test.step("Open the portal and choose Login", async () => {
     await login.open();
+    await login.clickPortalLogin();
+  });
+
+  await test.step("Enter the username and continue", async () => {
     await login.enterUsername(portalUser());
     await login.clickLoginAfterUsername();
   });

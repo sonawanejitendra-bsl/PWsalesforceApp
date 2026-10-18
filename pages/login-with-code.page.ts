@@ -4,8 +4,9 @@ import { portalPath } from "../src/test-data.js";
 
 /**
  * Salesforce sign-in used only by tests/login-with-code.spec.ts.
- * First screen: Username and Log In. Second screen: Password and Log In.
- * Then Verify Your Identity. This file is separate from pages/login.page.ts.
+ * The portal Login button matches the working locator in pages/login.page.ts.
+ * After that: Username, Log In, Password, Log In, then Verify Your Identity.
+ * This file does not change pages/login.page.ts.
  */
 export class LoginWithCodePage {
   constructor(private readonly page: Page) {}
@@ -17,6 +18,12 @@ export class LoginWithCodePage {
   async open(): Promise<void> {
     await this.page.goto(portalPath());
     await captureStep(this.page, "Portal opened");
+  }
+
+  /** Same Login control the onboarding page already uses on the portal header. */
+  async clickPortalLogin(): Promise<void> {
+    await this.page.locator(".slds-button.slds-button_neutral.comm-user-profile-menu__login-button").click();
+    await captureStep(this.page, "Login clicked");
   }
 
   async enterUsername(username: string): Promise<void> {
