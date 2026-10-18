@@ -23,12 +23,12 @@ Do not put the path on `PORTAL_URL`. The test opens `PORTAL_URL` + `PORTAL_PATH`
 
 `playwright.config.ts` reads `PORTAL_URL`. `pages/login.page.ts` method `open()` reads `PORTAL_PATH`.
 
-## Replace a login placeholder
+## Replace a login locator
 
-The login screen was not captured. Every login action in `pages/login.page.ts` is marked `PLACEHOLDER`.
+The portal Login button and the Salesforce Log In button are set in `pages/login.page.ts`. The email-code steps are in that same file: `waitForVerificationCode`, `enterVerificationCode`, and `submitVerification`.
 
 1. Open the real login page in the browser.
-2. In `pages/login.page.ts`, find the method with that step. The methods follow the flow in order: `clickLogin`, `clickEmployeeLogin`, `enterUsername`, `clickLoginAfterUsername`, `enterPassword`, `submitLogin`.
+2. In `pages/login.page.ts`, find the method with that step. The methods follow the flow in order: `clickLogin`, `clickEmployeeLogin`, `enterUsername`, `clickLoginAfterUsername`, `enterPassword`, `submitLogin`, then the three verification methods.
 3. Replace only the locator line inside that method. Leave the method name as it is, so the test file does not need an edit.
 4. Put the real username and password in `.env`. Do not type them in the test file.
 
@@ -51,7 +51,7 @@ The test reads this file. You do not need to edit `tests/broker-onboarding.spec.
 
 ## Sign in with the email code
 
-`npm run login` runs only `tests/login-with-code.spec.ts`. The screen steps are in `pages/login-with-code.page.ts`, so `pages/login.page.ts` stays as it is. It stops on the welcome screen. It does not search for a company.
+`npm run login` runs only `tests/login-with-code.spec.ts`. Every screen step is a method on `pages/login.page.ts`. It stops on the welcome screen. It does not search for a company.
 
 The Salesforce login is two screens, then the code:
 

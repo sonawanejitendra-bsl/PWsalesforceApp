@@ -3,9 +3,8 @@ import { captureStep } from "../src/capture-step.js";
 import { portalPath } from "../src/test-data.js";
 
 /**
- * PLACEHOLDER login screen.
- * The live login page was not captured, so these locators are samples.
- * To replace one, change only the locator inside that method.
+ * Portal login and the Salesforce username, password, and email-code screens.
+ * To replace one control, change only the locator inside that method.
  * Steps are listed in docs/how-to-change.md.
  */
 export class LoginPage {
@@ -17,9 +16,9 @@ export class LoginPage {
     await captureStep(this.page, "Portal opened");
   }
 
-  /** PLACEHOLDER. Replace with the real Login control. */
+  /** Portal header Login. Opens the Salesforce username screen. */
   async clickLogin(): Promise<void> {
-    await this.page.getByRole("button", { name: /^login$/i }).or(this.page.getByRole("link", { name: /^login$/i })).first().click();
+    await this.page.locator(".slds-button.slds-button_neutral.comm-user-profile-menu__login-button").click();
     await captureStep(this.page, "Login clicked");
   }
 
@@ -35,9 +34,9 @@ export class LoginPage {
     await captureStep(this.page, "Username entered");
   }
 
-  /** PLACEHOLDER. This is the Login click after the username. */
+  /** Salesforce Log In on the username screen. */
   async clickLoginAfterUsername(): Promise<void> {
-    await this.page.getByRole("button", { name: /^login$/i }).click();
+    await this.page.locator('input.button.r4.wide.primary[type="submit"]#Login[name="Login"]').click();
   }
 
   /** PLACEHOLDER. Replace the password textbox locator. The value comes from PORTAL_PASSWORD. */
@@ -46,9 +45,35 @@ export class LoginPage {
     await captureStep(this.page, "Password entered");
   }
 
-  /** PLACEHOLDER. This is the Login click after the password. */
+  /** Salesforce Log In on the password screen. */
   async submitLogin(): Promise<void> {
-    await this.page.getByRole("button", { name: /^login$/i }).click();
+    await this.page.locator('input.button.r4.wide.primary[type="submit"]#Login[name="Login"]').click();
     await captureStep(this.page, "Logged in");
+  }
+
+  private verificationCodeField() {
+    return this.page
+      .getByRole("textbox", { name: /verification code|one-time|passcode|^code$/i })
+      .or(this.page.locator("#emc, input[name='emc']"))
+      .or(this.page.getByPlaceholder(/code/i))
+      .first();
+  }
+
+  /** Shown after the password, when Salesforce emails a verification code. */
+  async waitForVerificationCode(): Promise<void> {
+    await this.verificationCodeField().waitFor({ state: "visible", timeout: 60_000 });
+    await captureStep(this.page, "Verification code requested");
+  }
+
+  async enterVerificationCode(code: string): Promise<void> {
+    const field = this.verificationCodeField();
+    await field.waitFor({ state: "visible", timeout: 60_000 });
+    await field.fill(code);
+    await captureStep(this.page, "Verification code entered");
+  }
+
+  async submitVerification(): Promise<void> {
+    await this.page.getByRole("button", { name: /^verify$/i }).click();
+    await captureStep(this.page, "Verification submitted");
   }
 }
