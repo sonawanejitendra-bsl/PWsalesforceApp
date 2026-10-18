@@ -3,14 +3,14 @@ Feature: Broker records the credit source and credit score
   The broker signs in, calculates the loan, and saves the credit source and score.
   Credit source is exactly one of Experian, Equifax, or TransUnion.
   The Examples row is one walkthrough. Another source or score still follows this feature.
-  Username and password come from PORTAL_USER and PORTAL_PASSWORD in .env.
+  The portal address and username are in the steps below.
   The verification code is read from Outlook. It is not stored in this feature.
 
   Scenario Outline: Broker signs in and saves the credit source
-    Given the broker opens the portal
+    Given the broker opens "https://birlasoftfscdemo-dev-ed.develop.my.site.com/brokerportal/s/customer-search-portal"
     When the broker chooses Login
     And the broker chooses "Are you an employee? login here"
-    And the broker enters the username from PORTAL_USER
+    And the broker enters username "jitendra.sonawane@birlasoft.com.fscdemo"
     And the broker clicks "Log In"
     Then the password field is shown
     When the broker enters the password from PORTAL_PASSWORD

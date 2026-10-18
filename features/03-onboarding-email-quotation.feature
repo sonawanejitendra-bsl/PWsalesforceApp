@@ -1,7 +1,7 @@
 Feature: Broker emails the quotation
   The broker completes onboarding and sends the quotation PDF to the customer.
   The Examples row is one walkthrough. Another company, score, or allowed choice still follows this feature.
-  Username and password come from PORTAL_USER and PORTAL_PASSWORD in .env.
+  The portal address and username are in the steps below.
   The verification code is read from Outlook. It is not stored in this feature.
 
   # Allowed choices, for every customer:
@@ -11,10 +11,10 @@ Feature: Broker emails the quotation
   #   Disclose commission: Yes prints the broker commission on the quotation. No leaves it off.
 
   Scenario Outline: Broker onboards a customer and emails the quotation PDF
-    Given the broker opens the portal
+    Given the broker opens "https://birlasoftfscdemo-dev-ed.develop.my.site.com/brokerportal/s/customer-search-portal"
     When the broker chooses Login
     And the broker chooses "Are you an employee? login here"
-    And the broker enters the username from PORTAL_USER
+    And the broker enters username "jitendra.sonawane@birlasoft.com.fscdemo"
     And the broker clicks "Log In"
     Then the password field is shown
     When the broker enters the password from PORTAL_PASSWORD

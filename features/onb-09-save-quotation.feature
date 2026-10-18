@@ -2,14 +2,14 @@
 Feature: Broker previews the quotation and saves it on the quote
   The broker signs in, saves the commission choice, previews the PDF, and saves it on the quote.
   The quote number and created date in the Examples row are one saved walkthrough.
-  Username and password come from PORTAL_USER and PORTAL_PASSWORD in .env.
+  The portal address and username are in the steps below.
   The verification code is read from Outlook. It is not stored in this feature.
 
   Scenario Outline: Broker signs in and saves the quotation PDF
-    Given the broker opens the portal
+    Given the broker opens "https://birlasoftfscdemo-dev-ed.develop.my.site.com/brokerportal/s/customer-search-portal"
     When the broker chooses Login
     And the broker chooses "Are you an employee? login here"
-    And the broker enters the username from PORTAL_USER
+    And the broker enters username "jitendra.sonawane@birlasoft.com.fscdemo"
     And the broker clicks "Log In"
     Then the password field is shown
     When the broker enters the password from PORTAL_PASSWORD
