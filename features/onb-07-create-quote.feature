@@ -3,7 +3,8 @@ Feature: Broker reviews the qualification and creates the quote
   The broker signs in, saves the credit information, and creates a quote.
   The quote number in the Examples row is one saved walkthrough. A new run receives a new number.
   The portal address and username are in the steps below.
-  The email verification steps are skipped so this scenario can run without that check.
+  A check that only confirms a field is visible before the next action is skipped.
+  The email verification code is still read and submitted.
 
   Scenario Outline: Broker signs in and creates the quote
     Given the broker opens "https://birlasoftfscdemo-dev-ed.develop.my.site.com/brokerportal/s/customer-search-portal"
@@ -11,13 +12,13 @@ Feature: Broker reviews the qualification and creates the quote
     And the broker chooses "Are you an employee? login here"
     And the broker enters username "jitendra.sonawane@birlasoft.com.fscdemo"
     And the broker clicks "Log In"
-    Then the password field is shown
+    # Skipped: Then the password field is shown
     When the broker enters the password from PORTAL_PASSWORD
     And the broker clicks "Log In"
     # Skipped: Then the verification code field is shown
-    # Skipped: And Salesforce has emailed a verification code from "noreply@salesforce.com" with subject "Verify your identity in Salesforce"
-    # Skipped: When the broker enters the verification code from that email
-    # Skipped: And the broker clicks "Verify"
+    And Salesforce has emailed a verification code from "noreply@salesforce.com" with subject "Verify your identity in Salesforce"
+    When the broker enters the verification code from that email
+    And the broker clicks "Verify"
     Then the welcome screen is shown
     And "Start Onboarding" is available
 

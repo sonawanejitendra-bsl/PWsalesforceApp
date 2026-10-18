@@ -3,7 +3,8 @@ Feature: Broker signs in with the email verification code
   This is the sign-in that npm run login runs.
   The Examples row is the same data as data/login-with-code.json.
   The portal address and username are in the steps below.
-  The email verification steps are skipped so this scenario can run without that check.
+  A check that only confirms a field is visible before the next action is skipped.
+  The email verification code is still read and submitted.
   If OTP_FROM or OTP_SUBJECT is set in .env, that value is used instead of the Examples row.
 
   Scenario Outline: Broker signs in through the employee login and the email code
@@ -12,13 +13,13 @@ Feature: Broker signs in with the email verification code
     And the broker chooses "<employeeLogin>"
     And the broker enters username "jitendra.sonawane@birlasoft.com.fscdemo"
     And the broker clicks "<logInButton>"
-    Then the password field is shown
+    # Skipped: Then the password field is shown
     When the broker enters the password from PORTAL_PASSWORD
     And the broker clicks "<logInButton>"
     # Skipped: Then the verification code field is shown
-    # Skipped: And Salesforce has emailed a verification code from "<otpFrom>" with subject "<otpSubject>"
-    # Skipped: When the broker enters the verification code from that email
-    # Skipped: And the broker clicks "<verifyButton>"
+    And Salesforce has emailed a verification code from "<otpFrom>" with subject "<otpSubject>"
+    When the broker enters the verification code from that email
+    And the broker clicks "<verifyButton>"
     Then the welcome screen is shown
     And "<welcomeButton>" is available
 
