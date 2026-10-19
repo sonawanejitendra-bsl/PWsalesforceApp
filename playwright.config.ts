@@ -16,6 +16,7 @@ export default defineConfig({
   reporter: [["list"], ["html", { open: "never" }], ["./src/report/heal-reporter.ts"]],
   use: {
     ...devices["Desktop Chrome"],
+    channel: "msedge",
     baseURL: portalUrl,
     headless: process.env.HEADED === "1" ? false : true,
     screenshot: "on",
