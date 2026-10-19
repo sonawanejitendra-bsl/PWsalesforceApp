@@ -1,5 +1,6 @@
 import type { Page } from "@playwright/test";
 import { captureStep } from "../src/capture-step.js";
+import { healedClick, portalLoginIntent } from "../src/healing/engine.js";
 import { portalPath } from "../src/test-data.js";
 
 /**
@@ -20,6 +21,16 @@ export class LoginPage {
   async clickLogin(): Promise<void> {
     await this.page.locator(".slds-button.slds-button_neutral.comm-user-profile-menu__login-button").click();
     await captureStep(this.page, "Login clicked");
+  }
+
+  /**
+   * Same Login control, asked for with a locator that is no longer on the page.
+   * Healing scores the live buttons and clicks the best match.
+   */
+  async clickLoginWithHeal(): Promise<void> {
+    const stale = this.page.locator("button.portal-login-removed");
+    await healedClick(this.page, stale, portalLoginIntent);
+    await captureStep(this.page, "Login clicked by healing");
   }
 
   /** "Are you an employee? login here" on the Salesforce screen, before the username. */
