@@ -24,11 +24,11 @@ export class LoginPage {
   }
 
   /**
-   * Same Login control, asked for with a locator that is no longer on the page.
-   * Healing scores the live buttons and clicks the best match.
+   * Asks for "Sign in" on purpose. The live control is named Login, so the probe misses.
+   * Healing then scores the page and clicks Login.
    */
   async clickLoginWithHeal(): Promise<void> {
-    const stale = this.page.locator("button.portal-login-removed");
+    const stale = this.page.getByRole("button", { name: "Sign in" });
     await healedClick(this.page, stale, portalLoginIntent);
     await captureStep(this.page, "Login clicked by healing");
   }

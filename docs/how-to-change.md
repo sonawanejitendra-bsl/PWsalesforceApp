@@ -51,7 +51,7 @@ The test reads this file. You do not need to edit `tests/broker-onboarding.spec.
 
 ## Sign in with the email code
 
-`npm run login` runs only `tests/login-with-code.spec.ts`. `npm run login-demo` runs that test and `tests/login-with-heal.spec.ts` one after the other, then writes `playwright-report/dynamic/index.html` with both results and the healing score. The heal test asks for a Login button that is not on the page. Recover mode clicks the live Login button when its score is at least 0.90 and clearly ahead of the next match. The same steps are in `features/04-login-with-code.feature`. Screen labels and the email match are in `data/login-with-code.json`. Every screen step is a method on `pages/login.page.ts`. It stops on the welcome screen. It does not search for a company.
+`npm run login` runs only `tests/login-with-code.spec.ts`. `npm run login-demo` runs that test and `tests/login-with-heal.spec.ts` one after the other, then writes `playwright-report/dynamic/index.html` with both results and the healing score. The heal test asks for a button named Sign in. The portal button is named Login, so that click misses, and recover mode clicks Login when its score is at least 0.90 and clearly ahead of the next match. The same steps are in `features/04-login-with-code.feature`. Screen labels and the email match are in `data/login-with-code.json`. Every screen step is a method on `pages/login.page.ts`. It stops on the welcome screen. It does not search for a company.
 
 The Salesforce login starts from the employee link, then two screens, then the code:
 

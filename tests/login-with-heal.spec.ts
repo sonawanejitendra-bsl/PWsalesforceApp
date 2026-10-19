@@ -1,15 +1,15 @@
 // Same sign-in as tests/login-with-code.spec.ts.
-// The portal Login button is requested with a stale locator so healing must find it.
+// The first click asks for "Sign in". The portal button is named Login, so healing must find it.
 import { test } from "../src/fixtures.js";
 import { readLatestOutlookOtp } from "../src/outlook-otp.js";
 import { loadLoginWithCodeData, portalPassword, portalUser } from "../src/test-data.js";
 
 const data = loadLoginWithCodeData();
 
-test("broker signs in when the Login locator is healed", { tag: ["@login", "@heal"] }, async ({ login, welcome }) => {
+test("broker signs in when Sign in is healed to Login", { tag: ["@login", "@heal"] }, async ({ login, welcome }) => {
   test.setTimeout(240_000);
 
-  await test.step("Open the portal and heal the Login click", async () => {
+  await test.step("Open the portal, miss Sign in, and heal to Login", async () => {
     await login.open();
     await login.clickLoginWithHeal();
     await login.clickEmployeeLogin();
