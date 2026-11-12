@@ -25,7 +25,8 @@ Playwright then reads `playwright.config.ts`. That file sets the browser, the sc
 
 | Step in the test | Page file | Method |
 | --- | --- | --- |
-| Open the portal and sign in | `pages/login.page.ts` | `open`, `clickLogin`, `clickEmployeeLogin`, `enterUsername`, `clickLoginAfterUsername`, `enterPassword`, `submitLogin` |
+| Open the portal and sign in with healing | `pages/login.page.ts` | `open`, `clickLoginWithHeal`, `clickEmployeeLogin`, `enterUsername`, `clickLoginAfterUsername`, `enterPassword` |
+| Read the code from Outlook and verify | `pages/login.page.ts`, `src/outlook-otp.ts`, `pages/welcome.page.ts` | `submitLogin`, `waitForVerificationCode`, `readLatestOutlookOtp`, `enterVerificationCode`, `submitVerification`, `expectWelcome` |
 | Start onboarding | `pages/welcome.page.ts` | `startOnboarding` |
 | Search and open the account | `pages/company-search.page.ts` | `search`, `expectResult`, `createOrUpdateAccount` |
 | Update the contact | `pages/company-contacts.page.ts` | `expectAccountSaved`, `enterEmail`, `selectQuoteContact`, `selectAuthorizedSignatory`, `createOrUpdateContacts` |
