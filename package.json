@@ -10,7 +10,8 @@
     "login": "playwright test tests/login-with-code.spec.ts --workers=1",
     "login-demo": "playwright test tests/login-with-code.spec.ts tests/login-with-heal.spec.ts --workers=1",
     "typecheck": "tsc --noEmit",
-    "report": "playwright show-report"
+    "report": "node scripts/open-report.mjs",
+    "report:playwright": "playwright show-report"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",

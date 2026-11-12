@@ -29,4 +29,4 @@ Fill `PORTAL_USER` and `PORTAL_PASSWORD` in `.env` before a live run. Login loca
 6. Update the contact, then click **Create or Update Contacts**.
 7. Enter the loan values, click **Calculate**, check the loan summary, then click **Continue**.
 
-`HEADED=1` in `.env` shows the browser. In VS Code, choose **Broker onboarding** under Run and Debug. `npm run report` opens the HTML report.
+`HEADED=1` in `.env` shows the browser. In VS Code, choose **Broker onboarding** under Run and Debug. `npm run report` opens the execution summary (`playwright-report\dynamic`): pass rate, quality gates, each step with its screenshot, self-healing detail, and the last 10 runs. `npm run report:playwright` opens Playwright's own HTML report.
